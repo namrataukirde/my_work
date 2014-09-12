@@ -1,0 +1,31 @@
+<div id="product_list" >
+  <h1>Listing products</h1>
+    <table>
+      <% @products.each do |product| %>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>" >
+          <!-- cycle is ruby method and 'list_line_odd' and other are classes from our css file -->
+          <td>
+            <%= image_tag(product.image_url, class: 'list_image') %>
+            <!-- image_tag is html tag which is use to display image on browser with specified path  -->
+          </td>
+          <td class="list_description" >
+              <dl>
+                <dt><%= product.title %></dt>
+                <dd><%= truncate(strip_tags(product.description),
+                    :length => 80) %></dd>
+                    <!-- here truncate used to show only 80 chars in browser and strip_tag removes html contents from our product.description -->
+              </dl>
+          </td>
+          <td class="list_actions" >
+            <%= link_to 'Show', product %><br/>
+            <%= link_to 'Edit', edit_product_path(product) %><br/>
+            <%= link_to 'Destroy', product,
+              :confirm => 'Are you sure?',
+              :method => :delete %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+<br />
+<%= link_to 'New product', new_product_path %>

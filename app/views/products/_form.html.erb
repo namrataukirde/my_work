@@ -1,0 +1,37 @@
+<%= form_for(@product) do |f| %>
+<!-- form_for is use to create form -->
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :abc %><br>
+    <!-- :title passed to f.label will be shown on form with 1st letter capital and we can use any string here -->
+    <%= f.text_field :title %>
+    <!-- :title here refers to the column of the table thus it must be similar to that otherwise it will give an error -->
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, :rows => 6 %>
+  </div>
+  <div class="field">
+    <%= f.label :image_url %><br>
+    <%= f.text_field :image_url %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+    <!-- when we click button then f.submit saves those things to database table -->
+  </div>
+<% end %>

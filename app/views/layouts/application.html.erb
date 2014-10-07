@@ -1,14 +1,36 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <title>MyWork</title>
-  <%= stylesheet_link_tag   'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  <title>Pragprog Books Online Store</title>
+  <%= stylesheet_link_tag "scaffold" %>
+  <%= stylesheet_link_tag "depot", media: 'all' %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tag %>
 </head>
-<body>
+<body id="store" >
+  <div id="banner" >
+    <%= image_tag("logo.png") %>
+    <%= @page_title || "Pragmatic Bookshelf" %>
+      <!-- we set the page
+        heading to the value in the instance variable @page_title -->
+  </div>
+  <div id="columns" >
+    <div id="side" >
 
-<%= yield %>
-
+          <%if @cart.present? %>
+            <%= hidden_div_if(@cart.line_items.empty?, :id => "cart") do %>
+              <%= render @cart %>
+            <% end %>
+          <% end %>
+      <%= link_to 'Home', '/' %><br />
+      <%= link_to 'Products', products_path %><br />
+      <a href="http://www..../faq" >Questions</a><br />
+      <a href="http://www..../news" >News</a><br />
+      <a href="http://www..../contact" >Contact</a><br />
+       </div>
+    </div>
+    <div id="main" >
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

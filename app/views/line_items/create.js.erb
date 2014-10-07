@@ -1,0 +1,6 @@
+$('#notice').remove();
+// page.select("#notice").each { |notice| notice.hide }
+// ??
+$('#cart').html('<%= escape_javascript render(@cart) %>')
+$("#current_item").css({"color": "red", "font-weight": "bold"});
+$('#cart').slideDown();

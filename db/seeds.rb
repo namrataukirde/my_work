@@ -5,15 +5,21 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Product.delete_all
+# Product.delete_all
 # . . .
-Product.create(:title => 'Programming Ruby 1.9',
-:description =>
-%{<p>
-Ruby is the fastest growing and most exciting dynamic language
-out there. If you need to get working programs delivered fast,
-you should add Ruby to your toolbox.
-</p>},
-:image_url => '/images/ruby.jpg',
-:price => 49.50)
+# Product.create(:title => 'Programming Ruby 1.9',
+# :description =>
+# %{<p>
+# Ruby is the fastest growing and most exciting dynamic language
+# out there. If you need to get working programs delivered fast,
+# you should add Ruby to your toolbox.
+# </p>},
+# :image_url => '/images/ruby.jpg',
+# :price => 49.50)
 # . . .
+Order.transaction do
+  (1..100).each do |i|
+    Order.create(:name => "Customer #{i}", :address => "#{i} Main Street",
+    :email => "customer-#{i}@example.com", :pay_type => "check")
+  end
+end

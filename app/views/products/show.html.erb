@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<p>
+<% if notice %>
+  <p id="notice" ><%= notice %></p>
+<% else %>
   <strong>Title:</strong>
   <%= @product.title %>
 </p>
@@ -19,6 +19,6 @@
   <strong>Price:</strong>
   <%= @product.price %>
 </p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<% end %>
+<%= link_to 'Edit', edit_product_url(@product.id) %> |
 <%= link_to 'Back', products_path %>
